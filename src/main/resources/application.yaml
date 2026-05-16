@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-ai-demo
+
+server:
+  port: 8082
+  servlet:
+    context-path: /ai-demo
