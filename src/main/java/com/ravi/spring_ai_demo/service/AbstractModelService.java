@@ -14,12 +14,16 @@ public abstract sealed class AbstractModelService<T extends ChatModel> permits O
         this.chatClient = ChatClient.builder(chatModel).build();
     }
 
+    private ChatClient.CallResponseSpec call(String prompt) {
+        return chatClient.prompt(prompt).call();
+    }
+
     protected ChatResponse getChatResponse(String prompt) {
-        return chatClient.prompt(prompt).call().chatResponse();
+        return call(prompt).chatResponse();
     }
 
     public String getContent(String prompt) {
-        String content = chatClient.prompt(prompt).call().content();
+        String content = call(prompt).content();
         log.info("Prompt response content: {}", content);
         return content;
     }
